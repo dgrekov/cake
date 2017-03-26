@@ -352,6 +352,7 @@ namespace Cake.Common.Net
         private static HttpClient GetHttpClient(ICakeContext context, bool useDefaultCredentials)
         {
             var client = useDefaultCredentials ? new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }) : new HttpClient();
+            client.Timeout = new TimeSpan(0, 10, 0);
             client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Cake", context.Environment.Runtime.CakeVersion.ToString()));
             return client;
         }
